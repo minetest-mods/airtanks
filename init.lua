@@ -118,10 +118,17 @@ register_air_tank("steel", S("Steel Air Tank"), "#d6d6d6", config.steel_uses, "d
 register_air_tank("copper", S("Copper Air Tank"), "#cd8e54", config.copper_uses, "default:copper_ingot")
 register_air_tank("bronze", S("Bronze Air Tank"), "#c87010", config.bronze_uses, "default:bronze_ingot")
 
+local sounds
+if default.node_sound_metal_defaults then -- 0.4.14 doesn't have metal sounds
+	sounds = default.node_sound_metal_defaults()
+else
+	sounds = default.node_sound_stone_defaults()
+end
+
 minetest.register_node("airtanks:compressor", {
 	description = S("Air Compressor"),
 	groups = {oddly_breakable_by_hand = 1, airtanks_compressor = 1},
-	sounds = default.node_sound_metal_defaults(),
+	sounds = sounds,
 	tiles = {
 		"airtanks_compressor_bottom.png^[transformR90",
 		"airtanks_compressor_bottom.png^[transformR90",
