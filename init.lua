@@ -25,14 +25,38 @@ local function setting(stype, name, default, description)
 	end	
 end
 
+local full_tank_desc = S("A tank containing compressed air.")
+local full_tank_help = S("If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this tank has %i uses before it becomes empty.")
+
+local empty_tank_desc = S("A compressed air tank, currently empty.")
+local empty_tank_help = S("This tank can be recharged with compressed air by using it on a compressor block. When fully charged this tank has %i uses before it becomes empty.")
+
+local compressor_desc = S("A machine for filling air tanks with compressed air.")
+local compressor_help = S("Place this machine somewhere that it has access to air (one of its adjacent nodes needs to have air in it). When you click on it with an empty or partly-empty compressed air tank the tank will be refilled.")
+
 setting("int", "steel_uses", 30, "Number of uses for a steel air tank")
 setting("int", "copper_uses", 10, "Number of uses for a copper air tank")
 setting("int", "bronze_uses", (config.steel_uses + config.copper_uses)/2, "Number of uses for a bronze air tank")
+
+local cardinal_dirs = {{x=1,y=0,z=0},{x=-1,y=0,z=0},{x=0,y=1,z=0},{x=0,y=-1,z=0},{x=0,y=0,z=1},{x=0,y=0,z=-1},}
 
 local recharge_airtank = function(itemstack, user, pointed_thing, full_item)
 	if pointed_thing.type ~= "node" then return itemstack end
 	local node = minetest.get_node(pointed_thing.under)
 	if minetest.get_item_group(node.name, "airtanks_compressor") > 0 then
+	
+		local has_air = false
+		for _, dir in pairs(cardinal_dirs) do
+			if minetest.get_node(vector.add(pointed_thing.under, dir)).name == "air" then
+				has_air = true
+				break
+			end
+		end
+		if not has_air then
+			minetest.sound_play("airtanks_compressor_fail", {pos = pointed_thing.under, gain = 0.5})
+			return itemstack
+		end
+	
 		if itemstack:get_name() == full_item then
 			itemstack:set_wear(0)
 		else
@@ -74,6 +98,8 @@ end
 local function register_air_tank(name, desc, color, uses, material)
 	minetest.register_craftitem("airtanks:empty_"..name.."_tank", {
 		description = S("Empty @1", desc),
+		_doc_items_longdesc = empty_tank_desc,
+		_doc_items_usagehelp = string.format(empty_tank_help, uses),
 		inventory_image = "airtanks_airtank.png^[multiply:"..color.."^airtanks_empty.png",
 		wield_image = "airtanks_airtank.png^[multiply:"..color.."^airtanks_empty.png",
 		stack_max = 99,
@@ -89,6 +115,8 @@ local function register_air_tank(name, desc, color, uses, material)
 
 	minetest.register_tool("airtanks:"..name.."_tank", {
 		description = desc,
+		_doc_items_longdesc = full_tank_desc,
+		_doc_items_usagehelp = string.format(full_tank_help, uses),
 		groups = {not_repaired_by_anvil = 1},
 		inventory_image = "airtanks_airtank.png^[multiply:"..color,
 		wield_image = "airtanks_airtank.png^[multiply:"..color,
@@ -127,6 +155,8 @@ end
 
 minetest.register_node("airtanks:compressor", {
 	description = S("Air Compressor"),
+	_doc_items_longdesc = compressor_desc,
+	_doc_items_usagehelp = compressor_help,
 	groups = {oddly_breakable_by_hand = 1, airtanks_compressor = 1},
 	sounds = sounds,
 	tiles = {

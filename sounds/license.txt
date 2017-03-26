@@ -1,2 +1,3 @@
 airtanks_hiss - from https://www.freesound.org/people/josepharaoh99/sounds/367125/ by josepharaoh99 under the public domain via CC 0
 airtanks_comressor - from https://www.freesound.org/people/Cell31_Sound_Productions/sounds/376927/ by Cell31_Sound_Productions under CC BY 3.0
+airtanks_compressor_fail - from https://www.freesound.org/people/Cell31_Sound_Productions/sounds/383020/ by Cell31_Sound_Productions under CC BY 3.0
