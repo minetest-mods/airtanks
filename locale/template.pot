@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-26 10:53-0600\n"
+"POT-Creation-Date: 2017-03-27 14:50-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:28
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:32
 msgid "A tank containing compressed air."
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:29
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:33
 #, lua-format
 msgid ""
 "If you're underwater and you're running out of breath, wield this item and "
@@ -29,44 +29,61 @@ msgid ""
 "tank has %i uses before it becomes empty."
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:31
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:35
 msgid "A compressed air tank, currently empty."
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:32
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:36
 #, lua-format
 msgid ""
 "This tank can be recharged with compressed air by using it on a compressor "
 "block. When fully charged this tank has %i uses before it becomes empty."
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:34
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:38
 msgid "A machine for filling air tanks with compressed air."
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:35
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:39
 msgid ""
 "Place this machine somewhere that it has access to air (one of its adjacent "
 "nodes needs to have air in it). When you click on it with an empty or partly-"
 "empty compressed air tank the tank will be refilled."
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:100
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:41
+msgid "A breathing tube to allow automatic hands-free use of air tanks."
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:42
+msgid ""
+"If this item is present in your quick-use inventory then whenever your "
+"breath bar goes below 5 it will automatically make use of any air tanks that "
+"are present in your quick-use inventory to replenish your breath supply. "
+"Note that it will not use air tanks that are present elsewhere in your "
+"inventory, only ones in your quick-use bar."
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:105
 msgid "Empty @1"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:145
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:152
 msgid "Steel Air Tank"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:146
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:153
 msgid "Copper Air Tank"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:147
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:154
 msgid "Bronze Air Tank"
 msgstr ""
 
-#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:157
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:167
 msgid "Air Compressor"
+msgstr ""
+
+#: C:\Users\Bryan\Downloads\minetest-0.4.15-win64\mods\airtanks\init.lua:203
+msgid "Breathing Tube"
 msgstr ""
