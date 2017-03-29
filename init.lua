@@ -105,8 +105,8 @@ local function register_air_tank(name, desc, color, uses, material)
 		description = S("Empty @1", desc),
 		_doc_items_longdesc = empty_tank_desc,
 		_doc_items_usagehelp = string.format(empty_tank_help, uses),
-		inventory_image = "airtanks_airtank.png^[multiply:"..color.."^airtanks_empty.png",
-		wield_image = "airtanks_airtank.png^[multiply:"..color.."^airtanks_empty.png",
+		inventory_image = "airtanks_airtank.png^[colorize:"..color.."^[mask:airtanks_airtank.png^airtanks_empty.png",
+		wield_image = "airtanks_airtank.png^[colorize:"..color.."^[mask:airtanks_airtank.png^airtanks_empty.png",
 		stack_max = 99,
 		
 		on_place = function(itemstack, user, pointed_thing)
@@ -125,8 +125,8 @@ local function register_air_tank(name, desc, color, uses, material)
 		_airtank_uses = uses,
 		_airtank_empty = "airtanks:empty_"..name.."_tank",
 		groups = {not_repaired_by_anvil = 1, airtank = 1},
-		inventory_image = "airtanks_airtank.png^[multiply:"..color,
-		wield_image = "airtanks_airtank.png^[multiply:"..color,
+		inventory_image = "airtanks_airtank.png^[colorize:"..color.."^[mask:airtanks_airtank.png",
+		wield_image = "airtanks_airtank.png^[colorize:"..color.."^[mask:airtanks_airtank.png",
 		stack_max = 1,
 	
 		on_place = function(itemstack, user, pointed_thing)
