@@ -25,9 +25,10 @@ local function setting(stype, name, default, description)
 	end	
 end
 
-setting("int", "steel_uses", 30, "Number of uses for a steel air tank")
+setting("int", "steel_uses", 20, "Number of uses for a steel air tank")
 setting("int", "copper_uses", 10, "Number of uses for a copper air tank")
-setting("int", "bronze_uses", (config.steel_uses + config.copper_uses)/2, "Number of uses for a bronze air tank")
+setting("int", "bronze_uses", config.steel_uses + config.copper_uses, "Number of uses for a bronze air tank")
+setting("bool", "wear_in_creative", true, "Air tanks wear out in creative mode")
 
 local full_tank_desc = S("A tank containing compressed air.")
 local full_tank_help = S("If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this tank has %i uses before it becomes empty.")
@@ -85,7 +86,7 @@ local function use_airtank(itemstack, user, pointed_thing, full_item)
 	user:set_breath(breath)
 	minetest.sound_play("airtanks_hiss", {pos = user:getpos(), gain = 0.5})
 
-	if not minetest.setting_getbool("creative_mode") then
+	if (not minetest.setting_getbool("creative_mode")) or config.wear_in_creative then
 		local wdef = itemstack:get_definition()
 		itemstack:add_wear(65535/(wdef._airtank_uses-1))
 		if itemstack:get_count() == 0 then
