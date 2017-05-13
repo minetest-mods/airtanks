@@ -9,11 +9,11 @@ local config = {}
 local function setting(stype, name, default, description)
 	local value
 	if stype == "bool" then
-		value = minetest.setting_getbool(CONFIG_FILE_PREFIX..name)
+		value = minetest.settings:get_bool(CONFIG_FILE_PREFIX..name)
 	elseif stype == "string" then
-		value = minetest.setting_get(CONFIG_FILE_PREFIX..name)
+		value = minetest.settings:get(CONFIG_FILE_PREFIX..name)
 	elseif stype == "int" or stype == "float" then
-		value = tonumber(minetest.setting_get(CONFIG_FILE_PREFIX..name))
+		value = tonumber(minetest.settings:get(CONFIG_FILE_PREFIX..name))
 	end
 	if value == nil then
 		value = default
@@ -86,7 +86,7 @@ local function use_airtank(itemstack, user, pointed_thing, full_item)
 	user:set_breath(breath)
 	minetest.sound_play("airtanks_hiss", {pos = user:getpos(), gain = 0.5})
 
-	if (not minetest.setting_getbool("creative_mode")) or config.wear_in_creative then
+	if (not minetest.settings:get_bool("creative_mode")) or config.wear_in_creative then
 		local wdef = itemstack:get_definition()
 		itemstack:add_wear(65535/(wdef._airtank_uses-1))
 		if itemstack:get_count() == 0 then
