@@ -142,10 +142,11 @@ local function register_air_tank(name, desc, color, uses, material)
 	minetest.register_craft({
 		recipe = {
 			{"", material, ""},
-			{material, "", material},
+			{material, "airtanks:compressor", material},
 			{"", material, ""},
 		},
-		output = "airtanks:empty_"..name.."_tank"
+		output = "airtanks:empty_"..name.."_tank",
+		replacements = {{"airtanks:compressor", "airtanks:compressor"}},
 	})
 	
 end
