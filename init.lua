@@ -28,12 +28,6 @@ setting("int", "copper_uses", 10, "Number of uses for a copper air tank")
 setting("int", "bronze_uses", config.steel_uses + config.copper_uses, "Number of uses for a bronze air tank")
 setting("bool", "wear_in_creative", true, "Air tanks wear out in creative mode")
 
-local full_tank_desc = S("A tank containing compressed air.")
-local full_tank_help = S("If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this tank has %i uses before it becomes empty.")
-
-local empty_tank_desc = S("A compressed air tank, currently empty.")
-local empty_tank_help = S("This tank can be recharged with compressed air by using it on a compressor block. When fully charged this tank has %i uses before it becomes empty.")
-
 local compressor_desc = S("A machine for filling air tanks with compressed air.")
 local compressor_help = S("Place this machine somewhere that it has access to air (one of its adjacent nodes needs to have air in it). When you click on it with an empty or partly-empty compressed air tank the tank will be refilled.")
 
@@ -102,8 +96,8 @@ end
 local function register_air_tank(name, desc, color, uses, material)
 	minetest.register_craftitem("airtanks:empty_"..name.."_tank", {
 		description = S("Empty @1", desc),
-		_doc_items_longdesc = empty_tank_desc,
-		_doc_items_usagehelp = string.format(empty_tank_help, uses),
+		_doc_items_longdesc = S("A compressed air tank, currently empty."),
+		_doc_items_usagehelp = S("This tank can be recharged with compressed air by using it on a compressor block. When fully charged this tank has @1 uses before it becomes empty.", uses),
 		inventory_image = "airtanks_airtank.png^[colorize:"..color.."^[mask:airtanks_airtank.png^airtanks_empty.png",
 		wield_image = "airtanks_airtank.png^[colorize:"..color.."^[mask:airtanks_airtank.png^airtanks_empty.png",
 		stack_max = 99,
@@ -119,8 +113,8 @@ local function register_air_tank(name, desc, color, uses, material)
 
 	minetest.register_tool("airtanks:"..name.."_tank", {
 		description = desc,
-		_doc_items_longdesc = full_tank_desc,
-		_doc_items_usagehelp = string.format(full_tank_help, uses),
+		_doc_items_longdesc = S("A tank containing compressed air."),
+		_doc_items_usagehelp = S("If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this tank has @1 uses before it becomes empty.", uses),
 		_airtank_uses = uses,
 		_airtank_empty = "airtanks:empty_"..name.."_tank",
 		groups = {not_repaired_by_anvil = 1, airtank = 1},

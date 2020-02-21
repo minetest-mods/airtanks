@@ -1,14 +1,39 @@
+# textdomain: airtanks
+
+
+### init.lua ###
+
+#documentation text
 A breathing tube to allow automatic hands-free use of air tanks.=
+
+#documentation text
 A compressed air tank, currently empty.=
+#documentation text
 A machine for filling air tanks with compressed air.=
+#documentation text
 A tank containing compressed air.=
+#node name, compresses air to fill pressurized gas tanks
 Air Compressor=
+#item name, a snorkel mouthpiece for breathing underwater
 Breathing Tube=
+#compressed air tank made of bronze
 Bronze Air Tank=
+#compressed air tank made of copper
 Copper Air Tank=
+#for indicating that a particular type of air tank is empty
 Empty @1=
+
+#documentation text
 If this item is present in your quick-use inventory then whenever your breath bar goes below 5 it will automatically make use of any air tanks that are present in your quick-use inventory to replenish your breath supply. Note that it will not use air tanks that are present elsewhere in your inventory, only ones in your quick-use bar.=
-If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this tank has %i uses before it becomes empty.=
+
+#documentation text
+If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this tank has @1 uses before it becomes empty.=
+
+#documentation text
 Place this machine somewhere that it has access to air (one of its adjacent nodes needs to have air in it). When you click on it with an empty or partly-empty compressed air tank the tank will be refilled.=
+
+#compressed air tank made of steel
 Steel Air Tank=
-This tank can be recharged with compressed air by using it on a compressor block. When fully charged this tank has %i uses before it becomes empty.=
+
+#documentation text
+This tank can be recharged with compressed air by using it on a compressor block. When fully charged this tank has @1 uses before it becomes empty.=
