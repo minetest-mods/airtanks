@@ -57,14 +57,13 @@ local function recharge_airtank(itemstack, user, pointed_thing, full_item)
 			itemstack:set_wear(0)
 		else
 			local inv = user:get_inventory()
-			local tanks_in_stack = itemstack:get_count();
 
-			if tanks_in_stack == 1 then
+			if itemstack:get_count() == 1 then
 				itemstack = ItemStack(full_item) -- replace with new stack containing one full tank
 			else
 				local leftover = inv:add_item("main", full_item)
 				if leftover:get_count() == 0 then
-					itemstack:set_count(itemstack:get_count()-1)
+					itemstack:take_item(1)
 				end
 			end
 		end
