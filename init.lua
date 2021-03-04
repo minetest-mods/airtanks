@@ -164,8 +164,8 @@ end
 local function register_air_tank_2(name, desc, color, uses)
 	minetest.register_craftitem("airtanks:empty_"..name.."_tank_2", {
 		description = S("Empty @1", desc),
-		_doc_items_longdesc = S("2 compressed air tanks, currently empty."),
-		_doc_items_usagehelp = S("This tank can be recharged with compressed air by using it on a compressor block. When fully charged this tank has @1 uses before it becomes empty.", uses),
+		_doc_items_longdesc = S("A pair of compressed air tanks, currently empty."),
+		_doc_items_usagehelp = S("This tank can be recharged with compressed air by using it on a compressor block. When fully charged these tanks have @1 uses before it becomes empty.", uses),
 		inventory_image = "airtanks_airtank_two.png^[colorize:"..color.."^[mask:airtanks_airtank_two.png^airtanks_empty.png",
 		wield_image = "airtanks_airtank_two.png^[colorize:"..color.."^[mask:airtanks_airtank_two.png^airtanks_empty.png",
 		stack_max = 99,
@@ -181,8 +181,8 @@ local function register_air_tank_2(name, desc, color, uses)
 
 	minetest.register_tool("airtanks:"..name.."_tank_2", {
 		description = desc,
-		_doc_items_longdesc = S("A tank containing compressed air."),
-		_doc_items_usagehelp = S("If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this tank has @1 uses before it becomes empty.", uses),
+		_doc_items_longdesc = S("A pair of tanks containing compressed air."),
+		_doc_items_usagehelp = S("If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged these tanks have @1 uses before it becomes empty.", uses),
 		_airtank_uses = uses,
 		_airtank_empty = "airtanks:empty_"..name.."_tank",
 		groups = {not_repaired_by_anvil = 1, airtank = 1},
@@ -221,8 +221,8 @@ end
 local function register_air_tank_3(name, desc, color, uses)
 	minetest.register_craftitem("airtanks:empty_"..name.."_tank_3", {
 		description = S("Empty @1", desc),
-		_doc_items_longdesc = S("3 compressed air tanks, currently empty."),
-		_doc_items_usagehelp = S("This tank can be recharged with compressed air by using it on a compressor block. When fully charged this tank has @1 uses before it becomes empty.", uses),
+		_doc_items_longdesc = S("A set of three compressed air tanks, currently empty."),
+		_doc_items_usagehelp = S("These tanks can be recharged with compressed air by using it on a compressor block. When fully charged these tanks have @1 uses before it becomes empty.", uses),
 		inventory_image = "airtanks_airtank_three.png^[colorize:"..color.."^[mask:airtanks_airtank_three.png^airtanks_empty.png",
 		wield_image = "airtanks_airtank_three.png^[colorize:"..color.."^[mask:airtanks_airtank_three.png^airtanks_empty.png",
 		stack_max = 99,
@@ -238,8 +238,8 @@ local function register_air_tank_3(name, desc, color, uses)
 
 	minetest.register_tool("airtanks:"..name.."_tank_3", {
 		description = desc,
-		_doc_items_longdesc = S("A tank containing compressed air."),
-		_doc_items_usagehelp = S("If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this tank has @1 uses before it becomes empty.", uses),
+		_doc_items_longdesc = S("A set of three tanks containing compressed air."),
+		_doc_items_usagehelp = S("If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged these tanks have @1 uses before it becomes empty.", uses),
 		_airtank_uses = uses,
 		_airtank_empty = "airtanks:empty_"..name.."_tank",
 		groups = {not_repaired_by_anvil = 1, airtank = 1},
@@ -293,13 +293,13 @@ register_air_tank("steel", S("Steel Air Tank"), "#d6d6d6", config.steel_uses, "d
 register_air_tank("copper", S("Copper Air Tank"), "#cd8e54", config.copper_uses, "default:copper_ingot")
 register_air_tank("bronze", S("Bronze Air Tank"), "#c87010", config.bronze_uses, "default:bronze_ingot")
 
-register_air_tank_2("steel", S("2 Steel Air Tank"), "#d6d6d6", config.steel_2_uses)
-register_air_tank_2("copper", S("2 Copper Air Tank"), "#cd8e54", config.copper_2_uses)
-register_air_tank_2("bronze", S("2 Bronze Air Tank"), "#c87010", config.bronze_2_uses)
+register_air_tank_2("steel", S("Double Steel Air Tanks"), "#d6d6d6", config.steel_2_uses)
+register_air_tank_2("copper", S("Double Copper Air Tanks"), "#cd8e54", config.copper_2_uses)
+register_air_tank_2("bronze", S("Double Bronze Air Tanks"), "#c87010", config.bronze_2_uses)
 
-register_air_tank_3("steel", S("3 Steel Air Tank"), "#d6d6d6", config.steel_3_uses)
-register_air_tank_3("copper", S("3 Copper Air Tank"), "#cd8e54", config.copper_3_uses)
-register_air_tank_3("bronze", S("3 Bronze Air Tank"), "#c87010", config.bronze_3_uses)
+register_air_tank_3("steel", S("Triple Steel Air Tanks"), "#d6d6d6", config.steel_3_uses)
+register_air_tank_3("copper", S("Triple Copper Air Tanks"), "#cd8e54", config.copper_3_uses)
+register_air_tank_3("bronze", S("Triple Bronze Air Tanks"), "#c87010", config.bronze_3_uses)
 
 ---------------------------------------------------------------------------------------------------------
 -- Compressor
