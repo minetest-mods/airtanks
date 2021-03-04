@@ -268,13 +268,13 @@ register_air_tank("steel", S("Steel Air Tank"), "#d6d6d6", config.steel_uses, "d
 register_air_tank("copper", S("Copper Air Tank"), "#cd8e54", config.copper_uses, "default:copper_ingot")
 register_air_tank("bronze", S("Bronze Air Tank"), "#c87010", config.bronze_uses, "default:bronze_ingot")
 
-register_air_tank_2("steel", S("2 Steel Air Tank"), "#d6d6d6", config.steel_uses_2)
-register_air_tank_2("copper", S("2 Copper Air Tank"), "#cd8e54", config.copper_uses_2)
-register_air_tank_2("bronze", S("2 Bronze Air Tank"), "#c87010", config.bronze_uses_2)
+register_air_tank_2("steel", S("2 Steel Air Tank"), "#d6d6d6", config.steel_2_uses)
+register_air_tank_2("copper", S("2 Copper Air Tank"), "#cd8e54", config.copper_2_uses)
+register_air_tank_2("bronze", S("2 Bronze Air Tank"), "#c87010", config.bronze_2_uses)
 
-register_air_tank_3("steel", S("3 Steel Air Tank"), "#d6d6d6", config.steel_uses_3)
-register_air_tank_3("copper", S("3 Copper Air Tank"), "#cd8e54", config.copper_uses_3)
-register_air_tank_3("bronze", S("3 Bronze Air Tank"), "#c87010", config.bronze_uses_3)
+register_air_tank_3("steel", S("3 Steel Air Tank"), "#d6d6d6", config.steel_3_uses)
+register_air_tank_3("copper", S("3 Copper Air Tank"), "#cd8e54", config.copper_3_uses)
+register_air_tank_3("bronze", S("3 Bronze Air Tank"), "#c87010", config.bronze_3_uses)
 
 ---------------------------------------------------------------------------------------------------------
 -- Compressor
