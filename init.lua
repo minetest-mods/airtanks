@@ -199,12 +199,21 @@ local function register_air_tank_2(name, desc, color, uses)
 		end,
 	})
 	
+	-- Allow empty tanks
 	minetest.register_craft({
 		recipe = {
 			-- Use 2 singles to make a double
 			{"airtanks:empty_"..name.."_tank", "airtanks:empty_"..name.."_tank"},
 		},
 		output = "airtanks:empty_"..name.."_tank_2",
+	})
+	-- Allow full tanks too
+	minetest.register_craft({
+		recipe = {
+			-- Use 2 singles to make a double
+			{"airtanks:"..name.."_tank", "airtanks:"..name.."_tank"},
+		},
+		output = "airtanks:"..name.."_tank_2",
 	})
 	
 end
@@ -247,6 +256,7 @@ local function register_air_tank_3(name, desc, color, uses)
 		end,
 	})
 	
+	-- Allow empty tanks
 	minetest.register_craft({
 		recipe = {
 			-- Use 3 singles to make a triple
@@ -260,6 +270,21 @@ local function register_air_tank_3(name, desc, color, uses)
 			{"airtanks:empty_"..name.."_tank", "airtanks:empty_"..name.."_tank_2", ""},
 		},
 		output = "airtanks:empty_"..name.."_tank_3",
+	})
+	-- Allow full tanks too
+	minetest.register_craft({
+		recipe = {
+			-- Use 3 singles to make a triple
+			{"airtanks:"..name.."_tank", "airtanks:"..name.."_tank", "airtanks:"..name.."_tank"},
+		},
+		output = "airtanks:"..name.."_tank_3",
+	})
+	minetest.register_craft({
+		recipe = {
+			-- Use 1 single and 1 dobule to make a triple
+			{"airtanks:"..name.."_tank", "airtanks:"..name.."_tank_2", ""},
+		},
+		output = "airtanks:"..name.."_tank_3",
 	})
 	
 end
