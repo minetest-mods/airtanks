@@ -191,11 +191,11 @@ local function register_air_tank_2(name, desc, color, uses)
 		stack_max = 1,
 	
 		on_place = function(itemstack, user, pointed_thing)
-			return use_airtank(itemstack, user, pointed_thing, "airtanks:"..name.."_tank", "airtanks:empty_"..name.."_tank_2")
+			return use_airtank(itemstack, user, pointed_thing, "airtanks:"..name.."_tank_2", "airtanks:empty_"..name.."_tank_2")
 		end,
 
 		on_use = function(itemstack, user, pointed_thing)
-			return use_airtank(itemstack, user, pointed_thing, "airtanks:"..name.."_tank", "airtanks:empty_"..name.."_tank_2")
+			return use_airtank(itemstack, user, pointed_thing, "airtanks:"..name.."_tank_2", "airtanks:empty_"..name.."_tank_2")
 		end,
 	})
 	
@@ -248,11 +248,11 @@ local function register_air_tank_3(name, desc, color, uses)
 		stack_max = 1,
 	
 		on_place = function(itemstack, user, pointed_thing)
-			return use_airtank(itemstack, user, pointed_thing, "airtanks:"..name.."_tank", "airtanks:empty_"..name.."_tank_3")
+			return use_airtank(itemstack, user, pointed_thing, "airtanks:"..name.."_tank_3", "airtanks:empty_"..name.."_tank_3")
 		end,
 
 		on_use = function(itemstack, user, pointed_thing)
-			return use_airtank(itemstack, user, pointed_thing, "airtanks:"..name.."_tank", "airtanks:empty_"..name.."_tank_3")
+			return use_airtank(itemstack, user, pointed_thing, "airtanks:"..name.."_tank_3", "airtanks:empty_"..name.."_tank_3")
 		end,
 	})
 	
