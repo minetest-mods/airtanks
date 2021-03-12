@@ -2,3 +2,5 @@ airtanks_steel_uses (Number of uses for a steel air tank) int 30 2 1000
 airtanks_copper_uses (Number of uses for a copper air tank) int 10 2 1000
 airtanks_bronze_uses (Number of uses for a bronze air tank) int 20 2 1000
 airtanks_wear_in_creative (Air tanks wear out in creative mode) bool true
+airtanks_enable_double (Enable double tanks) bool true
+airtanks_enable_triple (Enable triple tanks) bool true

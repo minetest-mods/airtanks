@@ -29,11 +29,13 @@ setting("int", "copper_uses", 10, "Number of uses for a copper air tank")
 setting("int", "bronze_uses", config.steel_uses + config.copper_uses, "Number of uses for a bronze air tank")
 
 -- Double tanks
+setting("bool", "enable_double", true, "Enable double tanks")
 setting("int", "steel_2_uses", config.steel_uses * 2, "Number of uses for a pair of steel air tanks")
 setting("int", "copper_2_uses", config.copper_uses * 2, "Number of uses for a pair of copper air tanks")
 setting("int", "bronze_2_uses", config.bronze_uses * 2, "Number of uses for a pair of bronze air tanks")
 
 -- Triple tanks
+setting("bool", "enable_triple", true, "Enable triple tanks")
 setting("int", "steel_3_uses", config.steel_uses * 3, "Number of uses for three steel air tanks")
 setting("int", "copper_3_uses", config.copper_uses * 3, "Number of uses for threee copper air tanks")
 setting("int", "bronze_3_uses", config.bronze_uses * 3, "Number of uses for three bronze air tanks")
@@ -93,7 +95,7 @@ local function use_airtank(itemstack, user, pointed_thing, full_item)
 	if breath > 9 then return itemstack end
 	breath = math.min(10, breath+5)
 	user:set_breath(breath)
-	minetest.sound_play("airtanks_hiss", {pos = user:getpos(), gain = 0.5})
+	minetest.sound_play("airtanks_hiss", {pos = user:get_pos(), gain = 0.5})
 
 	if (not minetest.settings:get_bool("creative_mode")) or config.wear_in_creative then
 		local wdef = itemstack:get_definition()
@@ -101,7 +103,7 @@ local function use_airtank(itemstack, user, pointed_thing, full_item)
 		if itemstack:get_count() == 0 then
 			if wdef.sound and wdef.sound.breaks then
 				minetest.sound_play(wdef.sound.breaks,
-					{pos = user:getpos(), gain = 0.5})
+					{pos = user:get_pos(), gain = 0.5})
 			end
 			local inv = user:get_inventory()
 			itemstack = inv:add_item("main", wdef._airtank_empty)
@@ -110,7 +112,7 @@ local function use_airtank(itemstack, user, pointed_thing, full_item)
 	return itemstack
 end
 
--- This will only work for single use tanks... we need to add seperate functions for the others
+-- This will only work for single use tanks... we need to add separate functions for the others
 local function register_air_tank(name, desc, color, uses, material)
 	minetest.register_craftitem("airtanks:empty_"..name.."_tank", {
 		description = S("Empty @1", desc),
@@ -266,7 +268,7 @@ local function register_air_tank_3(name, desc, color, uses)
 	})
 	minetest.register_craft({
 		recipe = {
-			-- Use 1 single and 1 dobule to make a triple
+			-- Use 1 single and 1 double to make a triple
 			{"airtanks:empty_"..name.."_tank", "airtanks:empty_"..name.."_tank_2", ""},
 		},
 		output = "airtanks:empty_"..name.."_tank_3",
@@ -281,7 +283,7 @@ local function register_air_tank_3(name, desc, color, uses)
 	})
 	minetest.register_craft({
 		recipe = {
-			-- Use 1 single and 1 dobule to make a triple
+			-- Use 1 single and 1 double to make a triple
 			{"airtanks:"..name.."_tank", "airtanks:"..name.."_tank_2", ""},
 		},
 		output = "airtanks:"..name.."_tank_3",
@@ -293,13 +295,17 @@ register_air_tank("steel", S("Steel Air Tank"), "#d6d6d6", config.steel_uses, "d
 register_air_tank("copper", S("Copper Air Tank"), "#cd8e54", config.copper_uses, "default:copper_ingot")
 register_air_tank("bronze", S("Bronze Air Tank"), "#c87010", config.bronze_uses, "default:bronze_ingot")
 
-register_air_tank_2("steel", S("Double Steel Air Tanks"), "#d6d6d6", config.steel_2_uses)
-register_air_tank_2("copper", S("Double Copper Air Tanks"), "#cd8e54", config.copper_2_uses)
-register_air_tank_2("bronze", S("Double Bronze Air Tanks"), "#c87010", config.bronze_2_uses)
+if config.enable_double then
+	register_air_tank_2("steel", S("Double Steel Air Tanks"), "#d6d6d6", config.steel_2_uses)
+	register_air_tank_2("copper", S("Double Copper Air Tanks"), "#cd8e54", config.copper_2_uses)
+	register_air_tank_2("bronze", S("Double Bronze Air Tanks"), "#c87010", config.bronze_2_uses)
+end
 
-register_air_tank_3("steel", S("Triple Steel Air Tanks"), "#d6d6d6", config.steel_3_uses)
-register_air_tank_3("copper", S("Triple Copper Air Tanks"), "#cd8e54", config.copper_3_uses)
-register_air_tank_3("bronze", S("Triple Bronze Air Tanks"), "#c87010", config.bronze_3_uses)
+if config.enable_triple then
+	register_air_tank_3("steel", S("Triple Steel Air Tanks"), "#d6d6d6", config.steel_3_uses)
+	register_air_tank_3("copper", S("Triple Copper Air Tanks"), "#cd8e54", config.copper_3_uses)
+	register_air_tank_3("bronze", S("Triple Bronze Air Tanks"), "#c87010", config.bronze_3_uses)
+end
 
 ---------------------------------------------------------------------------------------------------------
 -- Compressor
@@ -394,7 +400,7 @@ local function player_event_handler(player, eventname)
 	assert(player:is_player())
 	if eventname == "breath_changed" and player:get_breath() < 5 and tool_active(player, "airtanks:breathing_tube") then
 		if not use_any_airtank(player) then
-			minetest.sound_play("airtanks_gasp", {pos = player:getpos(), gain = 0.5})
+			minetest.sound_play("airtanks_gasp", {pos = player:get_pos(), gain = 0.5})
 		end
 	end
 

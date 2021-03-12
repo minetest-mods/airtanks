@@ -10,6 +10,10 @@ A breathing tube to allow automatic hands-free use of air tanks.=
 A compressed air tank, currently empty.=
 #documentation text
 A machine for filling air tanks with compressed air.=
+A pair of compressed air tanks, currently empty.=
+A pair of tanks containing compressed air.=
+A set of three compressed air tanks, currently empty.=
+A set of three tanks containing compressed air.=
 #documentation text
 A tank containing compressed air.=
 #node name, compresses air to fill pressurized gas tanks
@@ -20,11 +24,16 @@ Breathing Tube=
 Bronze Air Tank=
 #compressed air tank made of copper
 Copper Air Tank=
+Double Bronze Air Tanks=
+Double Copper Air Tanks=
+Double Steel Air Tanks=
 #for indicating that a particular type of air tank is empty
 Empty @1=
 
 #documentation text
 If this item is present in your quick-use inventory then whenever your breath bar goes below 5 it will automatically make use of any air tanks that are present in your quick-use inventory to replenish your breath supply. Note that it will not use air tanks that are present elsewhere in your inventory, only ones in your quick-use bar.=
+
+If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged these tanks have @1 uses before it becomes empty.=
 
 #documentation text
 If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this tank has @1 uses before it becomes empty.=
@@ -35,5 +44,13 @@ Place this machine somewhere that it has access to air (one of its adjacent node
 #compressed air tank made of steel
 Steel Air Tank=
 
+These tanks can be recharged with compressed air by using it on a compressor block. When fully charged these tanks have @1 uses before it becomes empty.=
+
+This tank can be recharged with compressed air by using it on a compressor block. When fully charged these tanks have @1 uses before it becomes empty.=
+
 #documentation text
 This tank can be recharged with compressed air by using it on a compressor block. When fully charged this tank has @1 uses before it becomes empty.=
+
+Triple Bronze Air Tanks=
+Triple Copper Air Tanks=
+Triple Steel Air Tanks=
