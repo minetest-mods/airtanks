@@ -4,3 +4,4 @@ airtanks_bronze_uses (Number of uses for a bronze air tank) int 20 2 1000
 airtanks_wear_in_creative (Air tanks wear out in creative mode) bool true
 airtanks_enable_double (Enable double tanks) bool true
 airtanks_enable_triple (Enable triple tanks) bool true
+airtanks_compressor_needs_fuel (Compressor requires fuel) bool true

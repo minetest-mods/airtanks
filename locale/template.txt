@@ -29,6 +29,7 @@ Double Copper Air Tanks=
 Double Steel Air Tanks=
 #for indicating that a particular type of air tank is empty
 Empty @1=
+Fuel=
 
 #documentation text
 If this item is present in your quick-use inventory then whenever your breath bar goes below 5 it will automatically make use of any air tanks that are present in your quick-use inventory to replenish your breath supply. Note that it will not use air tanks that are present elsewhere in your inventory, only ones in your quick-use bar.=
@@ -38,13 +39,16 @@ If you're underwater and you're running out of breath, wield this item and use i
 #documentation text
 If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this tank has @1 uses before it becomes empty.=
 
-#documentation text
-Place this machine somewhere that it has access to air (one of its adjacent nodes needs to have air in it). When you click on it with an empty or partly-empty compressed air tank the tank will be refilled.=
+Place place empty tanks in the inventory to the right. The compressor will start filling the largest capacity tanks first.=
 
+Pressure:@n@1=
 #compressed air tank made of steel
 Steel Air Tank=
+Tanks=
 
 These tanks can be recharged with compressed air by using it on a compressor block. When fully charged these tanks have @1 uses before it becomes empty.=
+
+This machine requires fuel to operate. Place something that can burn in the fuel slot, and then place empty tanks in the inventory to the right. The compressor will start filling the largest capacity tanks first.=
 
 This tank can be recharged with compressed air by using it on a compressor block. When fully charged these tanks have @1 uses before it becomes empty.=
 
