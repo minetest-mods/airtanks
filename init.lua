@@ -44,6 +44,39 @@ setting("bool", "wear_in_creative", true, "Air tanks wear out in creative mode")
 
 setting("bool", "compressor_needs_fuel", true, "Compressor needs fuel")
 
+-- these may come from default or from mineclone mods
+local steel_ingot
+local copper_ingot
+local bronze_ingot
+local mese_crystal_fragment
+local get_itemslot_bg = function(x, y, w, h) return "" end
+local get_hotbar_bg = function(x, y) return "" end
+local sounds
+
+if minetest.get_modpath("default") then
+	steel_ingot = "default:steel_ingot"
+	copper_ingot = "default:copper_ingot"
+	bronze_ingot = "default:bronze_ingot"
+	mese_crystal_fragment = "default:mese_crystal_fragment"
+	get_hotbar_bg = default.get_hotbar_bg
+	sounds = default.node_sound_metal_defaults()
+elseif minetest.get_modpath("mcl_core") then
+	steel_ingot = "mcl_core:iron_ingot"
+	mese_crystal_fragment = "mesecons:wire_00000000_off"
+else
+	assert(false, "This mod requires either Mineclone or the default Minetest Game to be installed.")
+end
+
+if minetest.get_modpath("mcl_formspec") then
+	get_itemslot_bg = mcl_formspec.get_itemslot_bg
+end
+if minetest.get_modpath("mcl_sounds") then
+	sounds = mcl_sounds.node_sound_metal_defaults()
+end
+if minetest.get_modpath("mcl_copper") then
+	copper_ingot = "mcl_copper:copper_ingot"
+end
+
 local compressor_desc = S("A machine for filling air tanks with compressed air.")
 local compressor_help
 if config.compressor_needs_fuel then
@@ -89,6 +122,7 @@ end
 
 -- This will only work for single use tanks... we need to add separate functions for the others
 local function register_air_tank(name, desc, color, uses, material)
+	if not material then return end
 	minetest.register_craftitem("airtanks:empty_"..name.."_tank", {
 		description = S("Empty @1", desc),
 		groups = {airtank = 1},
@@ -98,7 +132,6 @@ local function register_air_tank(name, desc, color, uses, material)
 		_airtanks_full = "airtanks:"..name.."_tank",
 		inventory_image = "airtanks_airtank.png^[colorize:"..color.."^[mask:airtanks_airtank.png^airtanks_empty.png",
 		wield_image = "airtanks_airtank.png^[colorize:"..color.."^[mask:airtanks_airtank.png^airtanks_empty.png",
-		stack_max = 99,
 	})
 
 	minetest.register_tool("airtanks:"..name.."_tank", {
@@ -133,7 +166,9 @@ local function register_air_tank(name, desc, color, uses, material)
 	
 end
 
-local function register_air_tank_2(name, desc, color, uses)
+local function register_air_tank_2(name, desc, color, uses, material)
+	if not material then return end
+
 	minetest.register_craftitem("airtanks:empty_"..name.."_tank_2", {
 		description = S("Empty @1", desc),
 		groups = {airtank = 1},
@@ -143,7 +178,6 @@ local function register_air_tank_2(name, desc, color, uses)
 		_airtanks_full = "airtanks:"..name.."_tank_2",
 		inventory_image = "airtanks_airtank_two.png^[colorize:"..color.."^[mask:airtanks_airtank_two.png^airtanks_empty.png",
 		wield_image = "airtanks_airtank_two.png^[colorize:"..color.."^[mask:airtanks_airtank_two.png^airtanks_empty.png",
-		stack_max = 99,
 	})
 
 	minetest.register_tool("airtanks:"..name.."_tank_2", {
@@ -185,7 +219,9 @@ local function register_air_tank_2(name, desc, color, uses)
 	
 end
 
-local function register_air_tank_3(name, desc, color, uses)
+local function register_air_tank_3(name, desc, color, uses, material)
+	if not material then return end
+
 	minetest.register_craftitem("airtanks:empty_"..name.."_tank_3", {
 		description = S("Empty @1", desc),
 		groups = {airtank = 1},
@@ -195,7 +231,6 @@ local function register_air_tank_3(name, desc, color, uses)
 		_airtanks_full = "airtanks:"..name.."_tank_3",
 		inventory_image = "airtanks_airtank_three.png^[colorize:"..color.."^[mask:airtanks_airtank_three.png^airtanks_empty.png",
 		wield_image = "airtanks_airtank_three.png^[colorize:"..color.."^[mask:airtanks_airtank_three.png^airtanks_empty.png",
-		stack_max = 99,
 	})
 
 	minetest.register_tool("airtanks:"..name.."_tank_3", {
@@ -251,26 +286,24 @@ local function register_air_tank_3(name, desc, color, uses)
 	
 end
 
-register_air_tank("steel", S("Steel Air Tank"), "#d6d6d6", config.steel_uses, "default:steel_ingot")
-register_air_tank("copper", S("Copper Air Tank"), "#cd8e54", config.copper_uses, "default:copper_ingot")
-register_air_tank("bronze", S("Bronze Air Tank"), "#c87010", config.bronze_uses, "default:bronze_ingot")
+register_air_tank("steel", S("Steel Air Tank"), "#d6d6d6", config.steel_uses, steel_ingot)
+register_air_tank("copper", S("Copper Air Tank"), "#cd8e54", config.copper_uses, copper_ingot)
+register_air_tank("bronze", S("Bronze Air Tank"), "#c87010", config.bronze_uses, bronze_ingot)
 
 if config.enable_double then
-	register_air_tank_2("steel", S("Double Steel Air Tanks"), "#d6d6d6", config.steel_2_uses)
-	register_air_tank_2("copper", S("Double Copper Air Tanks"), "#cd8e54", config.copper_2_uses)
-	register_air_tank_2("bronze", S("Double Bronze Air Tanks"), "#c87010", config.bronze_2_uses)
+	register_air_tank_2("steel", S("Double Steel Air Tanks"), "#d6d6d6", config.steel_2_uses, steel_ingot)
+	register_air_tank_2("copper", S("Double Copper Air Tanks"), "#cd8e54", config.copper_2_uses, copper_ingot)
+	register_air_tank_2("bronze", S("Double Bronze Air Tanks"), "#c87010", config.bronze_2_uses, bronze_ingot)
 end
 
 if config.enable_triple then
-	register_air_tank_3("steel", S("Triple Steel Air Tanks"), "#d6d6d6", config.steel_3_uses)
-	register_air_tank_3("copper", S("Triple Copper Air Tanks"), "#cd8e54", config.copper_3_uses)
-	register_air_tank_3("bronze", S("Triple Bronze Air Tanks"), "#c87010", config.bronze_3_uses)
+	register_air_tank_3("steel", S("Triple Steel Air Tanks"), "#d6d6d6", config.steel_3_uses, steel_ingot)
+	register_air_tank_3("copper", S("Triple Copper Air Tanks"), "#cd8e54", config.copper_3_uses, copper_ingot)
+	register_air_tank_3("bronze", S("Triple Bronze Air Tanks"), "#c87010", config.bronze_3_uses, bronze_ingot)
 end
 
 ---------------------------------------------------------------------------------------------------------
 -- Compressor
-
-local sounds = default.node_sound_metal_defaults()
 
 local tank_inv_size = 4*4
 
@@ -280,15 +313,19 @@ if config.compressor_needs_fuel then
 		local formspec =
 			"size[8,9]" ..
 			"label[1,1.5;" .. S("Fuel") .. "]" ..
+			get_itemslot_bg(1,2,1,1) ..
 			"list[context;fuel;1,2;1,1;]" ..
 			"label[4.5,0;" .. S("Tanks") .. "]" ..
 			"label[2,2;" .. S("Pressure:\n@1", remaining_time) .. "]" ..
+			get_itemslot_bg(3,0.5,4,4) ..
 			"list[context;tanks;3,0.5;4,4;]" ..
+			get_itemslot_bg(0,4.85,8,1) ..
 			"list[current_player;main;0,4.85;8,1;]" ..
+			get_itemslot_bg(0,6.08,8,3) ..
 			"list[current_player;main;0,6.08;8,3;8]" ..
 			"listring[context;tanks]" ..
 			"listring[current_player;main]" ..
-			default.get_hotbar_bg(0,4.85)
+			get_hotbar_bg(0,4.85)
 		return formspec
 	end
 else
@@ -296,12 +333,15 @@ else
 		local formspec =
 			"size[8,9]" ..
 			"label[3.5,0;" .. S("Tanks") .. "]" ..
+			get_itemslot_bg(2,0.5,4,4) ..
 			"list[context;tanks;2,0.5;4,4;]" ..
+			get_itemslot_bg(0,4.85,8,1) ..
 			"list[current_player;main;0,4.85;8,1;]" ..
+			get_itemslot_bg(0,6.08,8,3) ..
 			"list[current_player;main;0,6.08;8,3;8]" ..
 			"listring[context;tanks]" ..
 			"listring[current_player;main]" ..
-			default.get_hotbar_bg(0,4.85)
+			get_hotbar_bg(0,4.85)
 		return formspec	
 	end
 end
@@ -474,7 +514,7 @@ minetest.register_node("airtanks:compressor", {
 	description = S("Air Compressor"),
 	_doc_items_longdesc = compressor_desc,
 	_doc_items_usagehelp = compressor_help,
-	groups = {oddly_breakable_by_hand = 1, airtanks_compressor = 1},
+	groups = {oddly_breakable_by_hand = 1, airtanks_compressor = 1, handy = 1},
 	sounds = sounds,
 	tiles = {
 		"airtanks_compressor_bottom.png^[transformR90",
@@ -537,9 +577,9 @@ minetest.register_node("airtanks:compressor", {
 
 minetest.register_craft({
 	recipe = {
-		{"", "default:steel_ingot", ""},
-		{"default:steel_ingot", "default:mese_crystal_fragment", "default:steel_ingot"},
-		{"group:wood", "default:steel_ingot", "group:wood"},
+		{"", steel_ingot, ""},
+		{steel_ingot, mese_crystal_fragment, steel_ingot},
+		{"group:wood", steel_ingot, "group:wood"},
 	},
 	output = "airtanks:compressor"
 })
@@ -553,7 +593,6 @@ minetest.register_craftitem("airtanks:breathing_tube", {
 	_doc_items_usagehelp = tube_help,
 	inventory_image = "airtanks_breathing_tube.png",
 	wield_image = "airtanks_breathing_tube.png",
-	stack_max = 99,
 })
 
 minetest.register_craft({
