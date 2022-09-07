@@ -620,7 +620,7 @@ local function use_any_airtank(player)
 	local hotbar = player:hud_get_hotbar_itemcount()
 	for i=1, hotbar do
 		local itemstack = inv:get_stack("main", i)
-		if minetest.get_item_group(itemstack:get_name(), "airtank") > 0 then
+		if minetest.get_item_group(itemstack:get_name(), "airtank") > 1 then
 			itemstack = use_airtank(itemstack, player)
 			inv:set_stack("main", i, itemstack)
 			return true
@@ -630,8 +630,7 @@ local function use_any_airtank(player)
 end
 
 local function player_event_handler(player, eventname)
-	assert(player:is_player())
-	if eventname == "breath_changed" and player:get_breath() < 5 and tool_active(player, "airtanks:breathing_tube") then
+	if player:is_player() and eventname == "breath_changed" and player:get_breath() < 5 and tool_active(player, "airtanks:breathing_tube") then
 		if not use_any_airtank(player) then
 			minetest.sound_play("airtanks_gasp", {pos = player:get_pos(), gain = 0.5})
 		end
