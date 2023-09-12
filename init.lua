@@ -639,10 +639,14 @@ minetest.register_craft({
 })
 
 local function tool_active(player, item)
-	local inv = player:get_inventory()
+        local inv = player:get_inventory()
+        local inv_list = "main"
 	local hotbar = player:hud_get_hotbar_itemcount()
+	if minetest.get_modpath("mcl_armor") then
+	   inv_list = "armor"
+	end
 	for i=1, hotbar do
-		if inv:get_stack("armor", i):get_name() == item then
+		if inv:get_stack(inv_list, i):get_name() == item then
 			return true
 		end
 	end
@@ -650,13 +654,17 @@ local function tool_active(player, item)
 end
 
 local function use_any_airtank(player)
-	local inv = player:get_inventory()
+        local inv = player:get_inventory()
+	local inv_list = "main"
 	local hotbar = player:hud_get_hotbar_itemcount()
+	if minetest.get_modpath("mcl_armor") then
+	   inv_list = "armor"
+	end
 	for i=1, hotbar do
-		local itemstack = inv:get_stack("armor", i)
+		local itemstack = inv:get_stack(inv_list, i)
 		if minetest.get_item_group(itemstack:get_name(), "airtank") > 1 then
 			itemstack = use_airtank(itemstack, player)
-			inv:set_stack("armor", i, itemstack)
+			inv:set_stack(inv_list, i, itemstack)
 			return true
 		end
 	end
