@@ -152,7 +152,7 @@ local function register_air_tank(name, desc, color, uses, material)
 	
 		on_place = function(itemstack, user, pointed_thing)
 		   if minetest.get_modpath("mcl_armor") then
-		      mcl_armor.equip_on_use(itemstack, user, pointed_thing)
+		      return mcl_armor.equip_on_use(itemstack, user, pointed_thing)
 		   else
 		      return use_airtank(itemstack, user)
 		   end
@@ -206,7 +206,7 @@ local function register_air_tank_2(name, desc, color, uses, material)
 	
 		on_place = function(itemstack, user, pointed_thing)
 		   if minetest.get_modpath("mcl_armor") then
-		      mcl_armor.equip_on_use(itemstack, user, pointed_thing)
+		      return mcl_armor.equip_on_use(itemstack, user, pointed_thing)
 		   else
 		      return use_airtank(itemstack, user)
 		   end
