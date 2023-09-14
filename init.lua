@@ -151,11 +151,11 @@ local function register_air_tank(name, desc, color, uses, material)
 		_mcl_armor_texture = "airtanks_chestplate_tank.png",
 	
 		on_place = function(itemstack, user, pointed_thing)
-		   if minetest.get_modpath("mcl_armor") then
-		      return mcl_armor.equip_on_use(itemstack, user, pointed_thing)
-		   else
-		      return use_airtank(itemstack, user)
-		   end
+			if minetest.get_modpath("mcl_armor") then
+				return mcl_armor.equip_on_use(itemstack, user, pointed_thing)
+			else
+				return use_airtank(itemstack, user)
+			end
 		end,
 
 		on_secondary_use = minetest.get_modpath("mcl_armor") and mcl_armor.equip_on_use,
@@ -205,11 +205,11 @@ local function register_air_tank_2(name, desc, color, uses, material)
 		_mcl_armor_texture = "airtanks_chestplate_tank_two.png",
 	
 		on_place = function(itemstack, user, pointed_thing)
-		   if minetest.get_modpath("mcl_armor") then
-		      return mcl_armor.equip_on_use(itemstack, user, pointed_thing)
-		   else
-		      return use_airtank(itemstack, user)
-		   end
+			if minetest.get_modpath("mcl_armor") then
+				return mcl_armor.equip_on_use(itemstack, user, pointed_thing)
+			else
+				return use_airtank(itemstack, user)
+			end
 		end,
 
 		on_secondary_use = minetest.get_modpath("mcl_armor") and mcl_armor.equip_on_use,
@@ -383,7 +383,7 @@ local test_can_put = function(pos, listname, index, itemstack)
 				return 1
 			end
 		end
-		return  0
+		return	0
 	end
 	if listname == "fuel" then
 		local fuel, afterfuel = minetest.get_craft_result({method="fuel",width=1,items={itemstack:get_name()}})
@@ -639,8 +639,8 @@ minetest.register_craft({
 })
 
 local function tool_active(player, item)
-        local inv = player:get_inventory()
-        local inv_list = "main"
+	local inv = player:get_inventory()
+	local inv_list = "main"
 	local hotbar = player:hud_get_hotbar_itemcount()
 	if minetest.get_modpath("mcl_armor") then
 	   inv_list = "armor"
@@ -654,7 +654,7 @@ local function tool_active(player, item)
 end
 
 local function use_any_airtank(player)
-        local inv = player:get_inventory()
+	local inv = player:get_inventory()
 	local inv_list = "main"
 	local hotbar = player:hud_get_hotbar_itemcount()
 	if minetest.get_modpath("mcl_armor") then
