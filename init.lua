@@ -4,6 +4,8 @@ local print_settingtypes = false
 local CONFIG_FILE_PREFIX = "airtanks_"
 local config = {}
 
+local has_mcl_armor = minetest.get_modpath("mcl_armor")
+
 local function setting(stype, name, default, description)
 	local value
 	if stype == "bool" then
@@ -87,6 +89,9 @@ end
 
 local tube_desc = S("A breathing tube to allow automatic hands-free use of air tanks.")
 local tube_help = S("If this item is present in your quick-use inventory then whenever your breath bar goes below 5 it will automatically make use of any air tanks that are present in your quick-use inventory to replenish your breath supply. Note that it will not use air tanks that are present elsewhere in your inventory, only ones in your quick-use bar.")
+if has_mcl_armor then
+   tube_help = S("If this item is present in your head armor slot then whenever your breath bar goes below 5 it will automatically make use of any air tanks that are present in your chestplate armor slot to replenish your breath supply. Note that it will not use air tanks that are present elsewhere in your inventory, only ones in your chestplate armor slot.")
+end
 
 local cardinal_dirs = {{x=1,y=0,z=0},{x=-1,y=0,z=0},{x=0,y=1,z=0},{x=0,y=-1,z=0},{x=0,y=0,z=1},{x=0,y=0,z=-1},}
 
@@ -144,10 +149,18 @@ local function register_air_tank(name, desc, color, uses, material)
 		inventory_image = "airtanks_airtank.png^[colorize:"..color.."^[mask:airtanks_airtank.png",
 		wield_image = "airtanks_airtank.png^[colorize:"..color.."^[mask:airtanks_airtank.png",
 		stack_max = 1,
+		_mcl_armor_element = "torso",
+		_mcl_armor_texture = "airtanks_chestplate_tank.png",
 	
 		on_place = function(itemstack, user, pointed_thing)
-			return use_airtank(itemstack, user)
+			if has_mcl_armor then
+				return mcl_armor.equip_on_use(itemstack, user, pointed_thing)
+			else
+				return use_airtank(itemstack, user)
+			end
 		end,
+
+		on_secondary_use = has_mcl_armor and mcl_armor.equip_on_use,
 
 		on_use = function(itemstack, user, pointed_thing)
 			return use_airtank(itemstack, user)
@@ -190,10 +203,18 @@ local function register_air_tank_2(name, desc, color, uses, material)
 		inventory_image = "airtanks_airtank_two.png^[colorize:"..color.."^[mask:airtanks_airtank_two.png",
 		wield_image = "airtanks_airtank_two.png^[colorize:"..color.."^[mask:airtanks_airtank_two.png",
 		stack_max = 1,
+		_mcl_armor_element = "torso",
+		_mcl_armor_texture = "airtanks_chestplate_tank_two.png",
 	
 		on_place = function(itemstack, user, pointed_thing)
-			return use_airtank(itemstack, user)
+			if has_mcl_armor then
+				return mcl_armor.equip_on_use(itemstack, user, pointed_thing)
+			else
+				return use_airtank(itemstack, user)
+			end
 		end,
+
+		on_secondary_use = has_mcl_armor and mcl_armor.equip_on_use,
 
 		on_use = function(itemstack, user, pointed_thing)
 			return use_airtank(itemstack, user)
@@ -243,10 +264,18 @@ local function register_air_tank_3(name, desc, color, uses, material)
 		inventory_image = "airtanks_airtank_three.png^[colorize:"..color.."^[mask:airtanks_airtank_three.png",
 		wield_image = "airtanks_airtank_three.png^[colorize:"..color.."^[mask:airtanks_airtank_three.png",
 		stack_max = 1,
+		_mcl_armor_element = "torso",
+		_mcl_armor_texture = "airtanks_chestplate_tank_three.png",
 	
 		on_place = function(itemstack, user, pointed_thing)
-			return use_airtank(itemstack, user)
+		   if has_mcl_armor then
+		      mcl_armor.equip_on_use(itemstack, user, pointed_thing)
+		   else
+		      return use_airtank(itemstack, user)
+		   end
 		end,
+
+		on_secondary_use = has_mcl_armor and mcl_armor.equip_on_use,
 
 		on_use = function(itemstack, user, pointed_thing)
 			return use_airtank(itemstack, user)
@@ -356,7 +385,7 @@ local test_can_put = function(pos, listname, index, itemstack)
 				return 1
 			end
 		end
-		return  0
+		return	0
 	end
 	if listname == "fuel" then
 		local fuel, afterfuel = minetest.get_craft_result({method="fuel",width=1,items={itemstack:get_name()}})
@@ -593,6 +622,13 @@ minetest.register_craftitem("airtanks:breathing_tube", {
 	_doc_items_usagehelp = tube_help,
 	inventory_image = "airtanks_breathing_tube.png",
 	wield_image = "airtanks_breathing_tube.png",
+
+	_mcl_armor_element = "head",
+	_mcl_armor_texture = "airtanks_helmet_tube.png",
+	_mcl_armor_preview = "airtanks_helmet_tube_preview.png",
+
+	on_place = has_mcl_armor and mcl_armor.equip_on_use,
+	on_secondary_use = has_mcl_armor and mcl_armor.equip_on_use,
 })
 
 minetest.register_craft({
@@ -606,9 +642,13 @@ minetest.register_craft({
 
 local function tool_active(player, item)
 	local inv = player:get_inventory()
+	local inv_list = "main"
 	local hotbar = player:hud_get_hotbar_itemcount()
+	if has_mcl_armor then
+	   inv_list = "armor"
+	end
 	for i=1, hotbar do
-		if inv:get_stack("main", i):get_name() == item then
+		if inv:get_stack(inv_list, i):get_name() == item then
 			return true
 		end
 	end
@@ -617,12 +657,16 @@ end
 
 local function use_any_airtank(player)
 	local inv = player:get_inventory()
+	local inv_list = "main"
 	local hotbar = player:hud_get_hotbar_itemcount()
+	if has_mcl_armor then
+	   inv_list = "armor"
+	end
 	for i=1, hotbar do
-		local itemstack = inv:get_stack("main", i)
+		local itemstack = inv:get_stack(inv_list, i)
 		if minetest.get_item_group(itemstack:get_name(), "airtank") > 1 then
 			itemstack = use_airtank(itemstack, player)
-			inv:set_stack("main", i, itemstack)
+			inv:set_stack(inv_list, i, itemstack)
 			return true
 		end
 	end
