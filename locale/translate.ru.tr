@@ -1,0 +1,60 @@
+# textdomain: airtanks
+
+
+### init.lua ###
+
+#documentation text
+A breathing tube to allow automatic hands-free use of air tanks.=Дыхательная трубка позволяет автоматически использовать воздушный баллон без рук. 
+
+#documentation text
+A compressed air tank, currently empty.=Пустой баллон сжатого воздуха.
+#documentation text
+A machine for filling air tanks with compressed air.=Устройство для заполнения баллонов сжатым воздухом.
+A pair of compressed air tanks, currently empty.=Пара пустых баллонов сжатого воздуха.
+A pair of tanks containing compressed air.=Пара заполненных баллонов сжатого воздуха.
+A set of three compressed air tanks, currently empty.=Набор из 3-ех пустых баллонов сжатого воздуха.
+A set of three tanks containing compressed air.=Набор из 3-ех заполненных баллонов сжатого воздуха
+#documentation text
+A tank containing compressed air.=Баллон содержащий сжатый воздух.
+#node name, compresses air to fill pressurized gas tanks
+Air Compressor=Воздушный компрессор
+#item name, a snorkel mouthpiece for breathing underwater
+Breathing Tube=Дыхательная трубка
+#compressed air tank made of bronze
+Bronze Air Tank=Бронзовый воздушный баллон
+#compressed air tank made of copper
+Copper Air Tank=Медный воздушный баллон
+Double Bronze Air Tanks=Двойной бронзовый воздушный баллон
+Double Copper Air Tanks=Двойной медный воздушный баллон
+Double Steel Air Tanks=Двойной стальной воздушный баллон
+#for indicating that a particular type of air tank is empty
+Empty @1=Пустой @1
+Fuel=Топливо
+
+#documentation text
+If this item is present in your quick-use inventory then whenever your breath bar goes below 5 it will automatically make use of any air tanks that are present in your quick-use inventory to replenish your breath supply. Note that it will not use air tanks that are present elsewhere in your inventory, only ones in your quick-use bar.=Если этот предмет находится в ячейке быстрого доступа, то когда останется меньше 5 пузырьков воздуха игрок автоматически испоьзует воздушный баллон находящийся в слоте быстрого доступа который заполнит запасы воздуха. Запомните, что автоматически будут использоваться только баллоны находящиеся в слотах быстрого доступа.
+
+If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged these tanks have @1 uses before it becomes empty.=Если вы находитесь под водой и вы задыхаетесь, наденьте этот предмет и используйте его для восстановления 5 пузырьков. Полностью заполненные баллоны могут быть использованы @1 раз.
+
+#documentation text
+If you're underwater and you're running out of breath, wield this item and use it to replenish 5 bubbles on your breath bar. When fully charged this tank has @1 uses before it becomes empty.=Если вы находитесь под водой и вы задыхаетесь, наденьте этот предмет и используйте его для восстановления 5 пузырьков. Полностью заполненные баллон может быть использован @1 раз.
+
+Place empty tanks in the inventory to the right. The compressor will start filling the largest capacity tanks first.=Разместите пустые баллоны в инвентаре справа. Компресор автоматически заполнит их воздухом.
+
+Pressure:@n@1=Давление:@n@1
+#compressed air tank made of steel
+Steel Air Tank=Стальной воздушный баллон
+Tanks=Баллоны
+
+These tanks can be recharged with compressed air by using it on a compressor block. When fully charged these tanks have @1 uses before it becomes empty.=Эти баллоны могут быть заполнены сжатым воздухом с помощью компрессора. Полностью запоненные баллоны могут быть использованы @1 раз.
+
+This machine requires fuel to operate. Place something that can burn in the fuel slot, and then place empty tanks in the inventory to the right. The compressor will start filling the largest capacity tanks first.=Это устройство требует топливо дл работы. Поместите что-то в слот с топливом, а потом положите пустые баллоны в инвентарь справа. Компрессор заполнит сперва баллоны с самм большим объемом.
+
+This tank can be recharged with compressed air by using it on a compressor block. When fully charged these tanks have @1 uses before it becomes empty.=Этот баллон может быть заполнен сжатым воздухом с помощью компрессора. Полностью заполненный баллон может быть использован @1 раз.
+
+#documentation text
+This tank can be recharged with compressed air by using it on a compressor block. When fully charged this tank has @1 uses before it becomes empty.=Этот баллон может быть заполнен с помощью компрессора. Полностью заполненный баллон может быть использован @1 раз.
+
+Triple Bronze Air Tanks=Тройной бронзовый баллон
+Triple Copper Air Tanks=Тройной медный баллон
+Triple Steel Air Tanks=Тройной стальной баллон
