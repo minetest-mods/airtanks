@@ -268,11 +268,11 @@ local function register_air_tank_3(name, desc, color, uses, material)
 		_mcl_armor_texture = "airtanks_chestplate_tank_three.png",
 	
 		on_place = function(itemstack, user, pointed_thing)
-		   if has_mcl_armor then
-		      mcl_armor.equip_on_use(itemstack, user, pointed_thing)
-		   else
-		      return use_airtank(itemstack, user)
-		   end
+			if has_mcl_armor then
+				return mcl_armor.equip_on_use(itemstack, user, pointed_thing)
+			else
+				return use_airtank(itemstack, user)
+			end
 		end,
 
 		on_secondary_use = has_mcl_armor and mcl_armor.equip_on_use,
